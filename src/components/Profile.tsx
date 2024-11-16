@@ -4,21 +4,22 @@ import { searchGithub } from '../api/API';
 
 import { useState, useEffect } from 'react';
 
+type ProfileProps = { candidate: Candidate };
 
-const Profile = () => {
-    const [candidate, setCandidate] = useState<Candidate | null>(null);
+const Profile = ({candidate}: ProfileProps) => {
+    // const [candidate, setCandidate] = useState<Candidate | null>(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await searchGithub();
-            setCandidate(result);
-        };
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const result = await searchGithub();
+    //         setCandidate(result);
+    //     };
+    //     fetchData();
+    // }, []);
 
-    if (!candidate) {
-        return <div>Loading...</div>;
-    }
+    // if (!candidate) {
+    //     return <div>Loading...</div>;
+    // }
 
     return (
         <div>

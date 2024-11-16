@@ -24,7 +24,7 @@ const CandidateSearch = () => {
   return (
   <>
    <h1>CandidateSearch</h1>
-  <Profile avatar={example.avatar} name={example.name} username={example.username} location={example.location} email={example.email} company={example.company} html_url={example.html_url} />
+  <Profile candidate={example} />
 
   </>
   );

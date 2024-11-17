@@ -7,19 +7,20 @@ import Candidate from '../interfaces/Candidate.interface';
 const CandidateSearch = () => {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
   
-  useEffect(() => {
-    searchGithub().then((data) => {
-      setCandidate({
-        name: data[0].login,
-        username: data[0].login,
-        location: data[0].location,
-        avatar: data[0].avatar_url,
-        email: data[0].email,
-        html_url: data[0].html_url,
-        company: data[0].company,
-      })
-    })
-  }, []);
+  const getCandidate = async () => {
+    let data = await searchGithub();
+    setCandidate({
+      name: data[0].login,
+      username: data[0].login,
+      location: data[0].location,
+      avatar: data[0].avatar_url,
+      email: data[0].email,
+      html_url: data[0].html_url,
+      company: data[0].company,
+    });
+  };
+
+  useEffect(() => { getCandidate() }, []);
 
   if (!candidate) {
     return <div>Loading...</div>;
@@ -29,6 +30,7 @@ const CandidateSearch = () => {
   <>
    <h1>CandidateSearch</h1>
   <Profile candidate={candidate} />
+  <button onClick={() => getCandidate()}>Pass</button>
 
   </>
   );

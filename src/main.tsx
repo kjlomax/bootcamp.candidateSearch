@@ -5,7 +5,11 @@ import './index.css';
 import App from './App.tsx';
 import CandidateSearch from './pages/CandidateSearch.tsx';
 import SavedCandidates from './pages/SavedCandidates.tsx';
+import Candidate from './interfaces/Candidate.interface.ts';
 import ErrorPage from './pages/ErrorPage.tsx';
+
+
+
 
 const router = createBrowserRouter([
   {

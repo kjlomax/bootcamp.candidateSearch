@@ -3,6 +3,14 @@ import { searchGithub, searchGithubUser } from '../api/API';
 
 import Profile from "../components/Profile";
 import Candidate from '../interfaces/Candidate.interface';
+import { json } from 'react-router-dom';
+
+const saveCandidate = (candidate: Candidate) => {
+  let list = localStorage.getItem('savedList');
+  let candidateList = list ? JSON.parse(list) : [];
+  candidateList.push(candidate);
+  localStorage.setItem('savedList', JSON.stringify(candidateList));
+};
 
 const CandidateSearch = () => {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
@@ -31,6 +39,7 @@ const CandidateSearch = () => {
    <h1>CandidateSearch</h1>
   <Profile candidate={candidate} />
   <button onClick={() => getCandidate()}>Pass</button>
+  <button onClick={() => saveCandidate(candidate)}>Save</button>
 
   </>
   );

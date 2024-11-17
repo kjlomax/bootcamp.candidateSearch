@@ -3,8 +3,8 @@ const Nav = () => {
   return (
     <div>
       <nav>
-        <a href='djfbiw'>Home</a>
-        <a href='djfbiw'>Saved Candidates</a>
+        <a href= '/'>Home</a>
+        <a href='/SavedCandidates'>Saved Candidates</a>
       </nav>
     </div>
   )

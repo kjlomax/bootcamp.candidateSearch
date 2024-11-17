@@ -6,25 +6,29 @@ import Candidate from '../interfaces/Candidate.interface';
 
 const CandidateSearch = () => {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
+  
   useEffect(() => {
-    const getCandidate = async () => {
-      const person = await searchGithub();
-      setCandidate(person);
-    };
+    searchGithub().then((data) => {
+      setCandidate({
+        name: data[0].login,
+        username: data[0].login,
+        location: data[0].location,
+        avatar: data[0].avatar_url,
+        email: data[0].email,
+        html_url: data[0].html_url,
+        company: data[0].company,
+      })
+    })
   }, []);
-  const example: Candidate = {
-    name: 'John Doe',
-    username: 'johndoe',
-    location: 'New York, NY',
-    avatar: 'https://www.example.com/avatar.jpg',
-    email: 'example@why.com',
-    html_url: 'https://www.example.com',
-    company: 'Example, Inc.',
+
+  if (!candidate) {
+    return <div>Loading...</div>;
   }
+
   return (
   <>
    <h1>CandidateSearch</h1>
-  <Profile candidate={example} />
+  <Profile candidate={candidate} />
 
   </>
   );
